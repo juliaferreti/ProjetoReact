@@ -38,7 +38,7 @@ function Contador() {
 
   return (
     <div className="container">
-      <h1> Contador de pessoas</h1>
+      <h1>Contador de pessoas</h1>
       <div className="total-container">
         <h2 className="total-header">Total:</h2>
         <span className="total-number">{total}</span>
