@@ -10,7 +10,11 @@ export default function Atvidade01(){
           <Data />
           <Relogio />
           <Letreiro />
-          <Link to="/">Voltar para página inicial</Link>
+          <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "15vh" }}>
+            <button style={{ backgroundColor: "white" }}>
+              <Link to="/">Voltar para página inicial</Link>
+            </button>
+          </div>
         </>
     );
 }
