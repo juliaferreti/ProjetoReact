@@ -94,7 +94,7 @@ function Card({ children }) {
 function ProfileKatsuko() {
   return (
     <section>
-        <h2>2 - Katsuko Saruhashi</h2>
+        <h2>4 - Katsuko Saruhashi</h2>
         <Card>
         <Avatar
             size={100}
