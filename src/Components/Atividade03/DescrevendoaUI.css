@@ -1,0 +1,20 @@
+.photo {
+  width: 150px;
+  border-radius: 8px;
+}
+
+.avatar {
+  border-radius: 50%;
+}
+
+.card {
+  border: 1px solid #ccc;
+  padding: 16px;
+  border-radius: 8px;
+  display: inline-block;
+  margin: 16px;
+}
+
+.item {
+  margin: 8px 0;
+}
