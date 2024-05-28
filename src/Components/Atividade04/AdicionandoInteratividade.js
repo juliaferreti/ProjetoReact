@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
 import { sculptureList } from './Data';
-import { useImmer } from 'use-immer';
 
 // Atividade 1
 function Toolbar({ onPlayMovie, onUploadImage }) {
   return (
     <div>
       <h1>Adicionando Interatividade</h1>
-      <br></br>
-      <br></br>
+      <br />
+      <br />
       <h2>1 - Toolbar</h2>
       <Button onClick={onPlayMovie}>
         Play Movie
@@ -78,7 +77,7 @@ function Counter() {
 
   return (
     <>
-    <h2>3 - Counter</h2>
+      <h2>3 - Counter</h2>
       <h1>{number}</h1>
       <button onClick={() => {
         setNumber(n => n + 1);
@@ -86,7 +85,7 @@ function Counter() {
         setNumber(n => n + 1);
       }}>+3</button>
     </>
-  )
+  );
 }
 
 // Atividade 4
@@ -119,9 +118,9 @@ function Form1() {
         onChange={e => setMessage(e.target.value)}
       />
       <button type="submit">Enviar</button>
-      <br></br>
-      <br></br>
-      <br></br>
+      <br />
+      <br />
+      <br />
       <h2>5 - MovingDot</h2>
     </form>
   );
@@ -191,7 +190,7 @@ function Form2() {
 
   return (
     <>
-    <h2>6 - Form2</h2>
+      <h2>6 - Form2</h2>
       <label>
         Nome:
         <input
@@ -224,7 +223,7 @@ function Form2() {
 
 // Atividade 7
 function Form3() {
-  const [person, updatePerson] = useImmer({
+  const [person, setPerson] = useState({
     name: 'Niki de Saint Phalle',
     artwork: {
       title: 'Blue Nana',
@@ -234,8 +233,29 @@ function Form3() {
   });
 
   function handleNameChange(e) {
-    updatePerson(draft => {
-      draft.name = e.target.value;
+    setPerson({
+      ...person,
+      name: e.target.value
+    });
+  }
+
+  function handleTitleChange(e) {
+    setPerson({
+      ...person,
+      artwork: {
+        ...person.artwork,
+        title: e.target.value
+      }
+    });
+  }
+
+  function handleCityChange(e) {
+    setPerson({
+      ...person,
+      artwork: {
+        ...person.artwork,
+        city: e.target.value
+      }
     });
   }
 
@@ -253,22 +273,14 @@ function Form3() {
         Obra:
         <input
           value={person.artwork.title}
-          onChange={e => {
-            updatePerson(draft => {
-              draft.artwork.title = e.target.value;
-            });
-          }}
+          onChange={handleTitleChange}
         />
       </label>
       <label>
         Cidade:
         <input
           value={person.artwork.city}
-          onChange={e => {
-            updatePerson(draft => {
-              draft.artwork.city = e.target.value;
-            });
-          }}
+          onChange={handleCityChange}
         />
       </label>
       <p>
@@ -311,8 +323,8 @@ function List1() {
 function List2() {
   const [artists, setArtists] = useState([
     { id: 0, name: 'Marta Colvin Andrade' },
-    { id: 1, name: 'Lamidi Olonade Fakeye'},
-    { id: 2, name: 'Louise Nevelson'},
+    { id: 1, name: 'Lamidi Olonade Fakeye' },
+    { id: 2, name: 'Louise Nevelson' },
   ]);
 
   return (
@@ -367,25 +379,25 @@ function ShapeEditor() {
       <button onClick={handleClick}>
         Move circles down!
       </button>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
+      <br />
+      <br />
+      <br />
+      <br />
       <h2>11 - CounterList</h2>
       {shapes.map(shape => (
         <div
           key={shape.id}
           style={{
-          background: 'purple',
-          position: 'absolute',
-          left: shape.x,
-          top: shape.y,
-          borderRadius:
-            shape.type === 'circle'
-              ? '50%' : '',
-          width: 20,
-          height: 20,
-        }} />
+            background: 'purple',
+            position: 'absolute',
+            left: shape.x,
+            top: shape.y,
+            borderRadius:
+              shape.type === 'circle'
+                ? '50%' : '',
+            width: 20,
+            height: 20,
+          }} />
       ))}
     </>
   );
@@ -425,8 +437,8 @@ function List3() {
   const [name, setName] = useState('');
   const [artists, setArtists] = useState([
     { id: 0, name: 'Marta Colvin Andrade' },
-    { id: 1, name: 'Lamidi Olonade Fakeye'},
-    { id: 2, name: 'Louise Nevelson'},
+    { id: 1, name: 'Lamidi Olonade Fakeye' },
+    { id: 2, name: 'Louise Nevelson' },
   ]);
 
   function handleClick() {
@@ -476,7 +488,7 @@ function List4() {
 
   return (
     <>
-    <h2>13 - List4</h2>
+      <h2>13 - List4</h2>
       <button onClick={handleClick}>
         Reverse
       </button>
@@ -491,19 +503,20 @@ function List4() {
 
 // Atividade 14
 function BucketList() {
-  const [list, updateList] = useImmer([
+  const [list, setList] = useState([
     { id: 0, title: 'Big Bellies', seen: false },
     { id: 1, title: 'Lunar Landscape', seen: false },
     { id: 2, title: 'Terracotta Army', seen: true },
   ]);
 
   function handleToggle(artworkId, nextSeen) {
-    updateList(draft => {
-      const artwork = draft.find(a =>
-        a.id === artworkId
-      );
-      artwork.seen = nextSeen;
+    const nextList = list.map(artwork => {
+      if (artwork.id === artworkId) {
+        return { ...artwork, seen: nextSeen };
+      }
+      return artwork;
     });
+    setList(nextList);
   }
 
   return (
